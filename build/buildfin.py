@@ -147,7 +147,7 @@ with wave.open("bgm.wav","w") as w:
 # ---- narration timeline ----
 # place clips at offsets
 def adelay(inp,ms,out):
-    run(["ffmpeg","-y","-i",inp,"-af",f"adelay={ms}|{ms},apad","-t","20","-ac","2",out])
+    run(["ffmpeg","-y","-i",inp,"-af",f"aresample=44100,adelay={ms}|{ms},apad","-t","20","-ac","2","-ar","44100",out])
 offs={"a1":150,"a2":2200,"a3":5200,"a5":13200,"a6":17100}
 amix_in=[]
 for k,ms in offs.items():
@@ -156,7 +156,7 @@ for k,ms in offs.items():
 ni=[];
 cmd=["ffmpeg","-y"]
 for f in amix_in: cmd+=["-i",f]
-cmd+=["-filter_complex",f"amix=inputs={len(amix_in)}:duration=long:normalize=0,volume=2.0[nar]","-map","[nar]","-t","20","-ac","2","nar.wav"]
+cmd+=["-filter_complex",f"amix=inputs={len(amix_in)}:duration=long:normalize=0,volume=2.0[nar]","-map","[nar]","-t","20","-ac","2","-ar","44100","nar.wav"]
 run(cmd)
 # duck BGM under narration via sidechaincompress, then mix
 run(["ffmpeg","-y","-i","bgm.wav","-i","nar.wav","-filter_complex",
