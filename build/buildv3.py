@@ -62,7 +62,7 @@ def at(t): return f"{int(t//3600):d}:{int((t%3600)//60):02d}:{t%60:05.2f}"
 subs=[(0.15,2.0,"당신의 현관 취향은?"),(2.15,6.0,"①  밝고 따뜻한 집"),(6.15,10.0,"②  싱그러운 집"),
       (10.15,14.0,"③  우아한 집"),(14.15,18.0,"④  차분한 집"),(18.15,22.0,"⑤  빈티지 감성"),
       (22.15,26.0,"⑥  단정한 · 한국의 멋")]
-head="[Script Info]\nScriptType: v4.00+\nPlayResX: 1080\nPlayResY: 1920\n[V4+ Styles]\nFormat: Name, Fontname, Fontsize, PrimaryColour, OutlineColour, BackColour, Bold, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding\nStyle: Def,NanumGothic Bold,62,&H00FFFFFF,&H00202020,&H64000000,1,1,5,2,2,60,60,300,1\n[Events]\nFormat: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text\n"
+head="[Script Info]\nScriptType: v4.00+\nPlayResX: 1080\nPlayResY: 1920\n[V4+ Styles]\nFormat: Name, Fontname, Fontsize, PrimaryColour, OutlineColour, BackColour, Bold, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding\nStyle: Def,NanumGothic,64,&H00FFFFFF,&H00202020,&H64000000,1,1,5,2,2,60,60,300,1\n[Events]\nFormat: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text\n"
 with open("subs.ass","w") as f:
     f.write(head)
     for a,b,t in subs: f.write(f"Dialogue: 0,{at(a)},{at(b)},Def,,0,0,0,,{t}\n")
@@ -98,9 +98,9 @@ cv.save("cta.png")
 run(["ffmpeg","-y","-loop","1","-t","4","-i","cta.png","-filter_complex",
      "[0:v]scale=1080:1920,fps=24,setsar=1,fade=t=in:st=0:d=0.4[v]","-map","[v]","-frames:v","96",*E,"cta.mp4"])
 
-# concat vsub + cta = 30s
-with open("fc.txt","w") as f: f.write("file 'vsub.mp4'\nfile 'cta.mp4'\n")
-run(["ffmpeg","-y","-f","concat","-safe","0","-i","fc.txt","-c","copy","vfull.mp4"])
+# concat vsub + cta = 30s (re-encode via concat filter to normalize timestamps)
+run(["ffmpeg","-y","-i","vsub.mp4","-i","cta.mp4","-filter_complex",
+     "[0:v]fps=24,setsar=1[a];[1:v]fps=24,setsar=1[b];[a][b]concat=n=2:v=1:a=0[v]","-map","[v]",*E,"vfull.mp4"])
 
 # BGM (bright, 30s)
 import numpy as np
