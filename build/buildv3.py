@@ -18,14 +18,15 @@ IMG=[("s0","14KiDH92_rkYXOjl7Uv_ldHGbSTT1bu6F"),  # 해바라기 a
 for k,v in IMG: dl(DR%v,k+".png")
 
 CF="https://d8j0ntlcm91z4.cloudfront.net/user_3GSJKMpiMvaQXlBywoOArsxC3nk/"
-NAR={"n1":"hf_20260804_065106_6611c274-85cb-47de-bdb6-dfe8511ade4b.mp3",
-     "n2":"hf_20260804_065106_bb089e5a-11ce-42bb-97f6-038fbc86bb1e.mp3",
-     "n3":"hf_20260804_065106_c9aa6fe5-3e72-4dd0-9232-16cd0a1fa934.mp3",
-     "n4":"hf_20260804_065106_722afe19-86fb-4492-8224-98339f8edf92.mp3",
-     "n5":"hf_20260804_065106_6cfd887e-76da-4bd9-a9aa-181fa0fcdd96.mp3",
-     "n6":"hf_20260804_065106_1a0e25d1-2836-4d84-82fd-545e6fce86ef.mp3",
-     "n7":"hf_20260804_065106_906d7cbd-9859-482e-a36e-77bfebcc8bf1.mp3",
-     "n8":"hf_20260804_065106_5c7be389-97d1-4d21-b9ef-72beea29375a.mp3"}
+# narration = each image's CORRECT mood (positions ①③⑤ 재식별 반영)
+NAR={"n1":"hf_20260804_065106_6611c274-85cb-47de-bdb6-dfe8511ade4b.mp3", # 당신의 현관 취향은?
+     "n2":"hf_20260804_065106_1a0e25d1-2836-4d84-82fd-545e6fce86ef.mp3", # ①테라코타 빈티지 감성
+     "n3":"hf_20260804_065106_c9aa6fe5-3e72-4dd0-9232-16cd0a1fa934.mp3", # ②데이지 싱그러운 집
+     "n4":"hf_20260804_065106_bb089e5a-11ce-42bb-97f6-038fbc86bb1e.mp3", # ③해바라기 밝고 따뜻한 집
+     "n5":"hf_20260804_065106_6cfd887e-76da-4bd9-a9aa-181fa0fcdd96.mp3", # ④올리브세이지 차분한 집
+     "n6":"hf_20260804_065106_722afe19-86fb-4492-8224-98339f8edf92.mp3", # ⑤수국 우아한 집
+     "n7":"hf_20260804_065106_906d7cbd-9859-482e-a36e-77bfebcc8bf1.mp3", # ⑥모던한옥 단정한, 한국의 멋
+     "n8":"hf_20260804_065106_5c7be389-97d1-4d21-b9ef-72beea29375a.mp3"} # 댓글로 번호를 골라주세요!
 for k,v in NAR.items(): dl(CF+v,k+".mp3")
 try:
     urllib.request.urlretrieve("https://raw.githubusercontent.com/google/fonts/main/ofl/nanumgothic/NanumGothic-Bold.ttf","NG.ttf")
@@ -59,8 +60,8 @@ run(["ffmpeg","-y","-f","concat","-safe","0","-i","mc.txt","-c","copy","main.mp4
 
 # subtitles for S1-S7 (number emphasized)
 def at(t): return f"{int(t//3600):d}:{int((t%3600)//60):02d}:{t%60:05.2f}"
-subs=[(0.15,2.0,"당신의 현관 취향은?"),(2.15,6.0,"①  밝고 따뜻한 집"),(6.15,10.0,"②  싱그러운 집"),
-      (10.15,14.0,"③  우아한 집"),(14.15,18.0,"④  차분한 집"),(18.15,22.0,"⑤  빈티지 감성"),
+subs=[(0.15,2.0,"당신의 현관 취향은?"),(2.15,6.0,"①  빈티지 감성"),(6.15,10.0,"②  싱그러운 집"),
+      (10.15,14.0,"③  밝고 따뜻한 집"),(14.15,18.0,"④  차분한 집"),(18.15,22.0,"⑤  우아한 집"),
       (22.15,26.0,"⑥  단정한 · 한국의 멋")]
 head="[Script Info]\nScriptType: v4.00+\nPlayResX: 1080\nPlayResY: 1920\n[V4+ Styles]\nFormat: Name, Fontname, Fontsize, PrimaryColour, OutlineColour, BackColour, Bold, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding\nStyle: Def,NanumGothic,64,&H00FFFFFF,&H00202020,&H64000000,1,1,5,2,2,60,60,300,1\n[Events]\nFormat: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text\n"
 with open("subs.ass","w") as f:
