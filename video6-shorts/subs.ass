@@ -1,0 +1,27 @@
+[Script Info]
+ScriptType: v4.00+
+PlayResX: 1080
+PlayResY: 1920
+WrapStyle: 2
+ScaledBorderAndShadow: yes
+YCbCr Matrix: TV.709
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Sub,Noto Sans KR,66,&H00FFFFFF,&H000000FF,&H00101010,&H80000000,-1,0,0,0,100,100,0,0,1,6,3,2,65,65,480,1
+Style: Badge,Noto Sans KR,86,&H00FFFFFF,&H000000FF,&H002F96C9,&H002F96C9,-1,0,0,0,100,100,2,0,3,16,0,8,65,65,250,1
+Style: BadgeS,Noto Sans KR,52,&H00FFFFFF,&H000000FF,&H002F96C9,&H002F96C9,-1,0,0,0,100,100,2,0,3,14,0,8,65,65,250,1
+Style: Card,Noto Sans KR,52,&H00FFFFFF,&H000000FF,&H00282B2B,&H00282B2B,-1,0,0,0,100,100,2,0,3,20,0,2,65,65,470,1
+
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: 0,0:00:00.10,0:00:03.00,Sub,,0,0,0,,현관 매트, {\c&H002E62D5&}사이즈{\c&H00FFFFFF&}가 반이에요
+Dialogue: 0,0:00:03.00,0:00:10.00,Sub,,0,0,0,,90×60, {\c&H002E62D5&}원룸{\c&H00FFFFFF&}·일반 현관에 딱
+Dialogue: 0,0:00:10.00,0:00:17.00,Sub,,0,0,0,,120×80, {\c&H002E62D5&}신혼집{\c&H00FFFFFF&}·넓은 현관에
+Dialogue: 0,0:00:17.00,0:00:24.00,Sub,,0,0,0,,120×140, 대형 {\c&H002E62D5&}전실{\c&H00FFFFFF&}·베란다까지
+Dialogue: 0,0:00:24.00,0:00:28.00,Sub,,0,0,0,,공간에 맞게\N{\c&H002E62D5&}딱 맞는{\c&H00FFFFFF&} 사이즈로
+Dialogue: 0,0:00:28.00,0:00:32.00,Card,,0,0,0,,에어클린매트  |  3가지 사이즈 · 6종 디자인
+Dialogue: 0,0:00:03.30,0:00:10.00,Badge,,0,0,0,,{\fad(220,220)} 90 × 60 
+Dialogue: 0,0:00:10.30,0:00:17.00,Badge,,0,0,0,,{\fad(220,220)} 120 × 80 
+Dialogue: 0,0:00:17.30,0:00:24.00,Badge,,0,0,0,,{\fad(220,220)} 120 × 140 
+Dialogue: 0,0:00:24.30,0:00:28.00,BadgeS,,0,0,0,,{\fad(220,220)} 90×60  ·  120×80  ·  120×140 
